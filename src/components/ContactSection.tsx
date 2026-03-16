@@ -19,19 +19,19 @@ const contactInfo = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@developer.com',
-    href: 'mailto:hello@developer.com',
+    value: 'hafizakbar7790@gmail.com',
+    href: 'mailto:hafizakbar7790@gmail.com',
   },
   {
     icon: Phone,
     label: 'Telepon',
-    value: '+62 812 3456 7890',
-    href: 'tel:+6281234567890',
+    value: '+62 822 1120 1308',
+    href: 'tel:+6282211201308',
   },
   {
     icon: MapPin,
     label: 'Lokasi',
-    value: 'Jakarta, Indonesia',
+    value: 'Banda Aceh, Indonesia',
     href: '#',
   },
 ];
@@ -86,7 +86,7 @@ export default function ContactSection() {
       });
 
       setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error('Error sending email:', error);
       toast({
         title: 'Gagal Mengirim',
@@ -126,7 +126,7 @@ export default function ContactSection() {
           >
             <div>
               <h3 className="font-display text-2xl font-bold mb-4">
-                Mari Berkolaborasi!
+                Let's Work Together!
               </h3>
               <p className="text-muted-foreground leading-relaxed">
                 Punya project menarik atau ingin berkolaborasi? Jangan ragu untuk 

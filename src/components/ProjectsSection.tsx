@@ -4,59 +4,33 @@ import { Button } from '@/components/ui/button';
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    description: 'Platform e-commerce modern dengan fitur lengkap termasuk payment gateway, inventory management, dan analytics dashboard.',
-    tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-    image: '🛒',
-    color: 'from-blue-500/20 to-cyan-500/20',
-    github: '#',
-    demo: '#',
+    title: "Task Manager App",
+    description:  "Aplikasi untuk mengelola tugas harian dengan fitur tambah, hapus, dan checklist task.",
+    tags: ["React", "Tailwind", "JavaScript"],
+    image: "📝",
+    color: "from-blue-500/20 to-cyan-500/20",
+    github: "https://github.com/akbarsaida/task-manager.git",
+    demo: "https://task-manager-ruddy-five.vercel.app",
   },
   {
-    title: 'Learning Management System',
-    description: 'Platform pembelajaran online dengan video streaming, quiz interaktif, dan progress tracking.',
-    tags: ['Next.js', 'TypeScript', 'MongoDB', 'WebRTC'],
-    image: '📚',
-    color: 'from-purple-500/20 to-pink-500/20',
-    github: '#',
-    demo: '#',
+    title: "Study Planner",
+    description: "Aplikasi untuk mengatur jadwal belajar dan memonitor progress belajar.",
+    tags: ["React", "Tailwind", "Framer Motion"],
+    image: "📚",
+    color: "from-purple-500/20 to-pink-500/20",
+    github: "https://github.com/akbarsaida/study-planner.git",
+    demo: "https://study-planner-13h5.vercel.app",
   },
   {
-    title: 'Social Media Dashboard',
-    description: 'Dashboard analytics untuk social media dengan real-time data visualization dan reporting.',
-    tags: ['React', 'D3.js', 'Firebase', 'Tailwind'],
-    image: '📊',
-    color: 'from-orange-500/20 to-red-500/20',
-    github: '#',
-    demo: '#',
+    title:  "Islamic Learning Tracker",
+    description: "Aplikasi untuk melacak hafalan Al-Qur'an dan progress belajar agama.",
+    tags: ["React", "Tailwind"],
+    image: "🕌",
+    color: "from-green-500/20 to-emerald-500/20",
+    github: "https://github.com/akbarsaida/islamic-learning-tracker.git",
+    demo:"https://islamic-learning-tracker.vercel.app",
   },
-  {
-    title: 'AI Content Generator',
-    description: 'Tool untuk generate konten menggunakan AI dengan integrasi berbagai model language.',
-    tags: ['Python', 'FastAPI', 'OpenAI', 'React'],
-    image: '🤖',
-    color: 'from-green-500/20 to-teal-500/20',
-    github: '#',
-    demo: '#',
-  },
-  {
-    title: 'Video Editing Tutorial',
-    description: 'Seri tutorial video editing dengan 100+ episode dan 10k+ subscribers.',
-    tags: ['Premiere Pro', 'After Effects', 'YouTube'],
-    image: '🎬',
-    color: 'from-red-500/20 to-orange-500/20',
-    isContent: true,
-    youtube: '#',
-  },
-  {
-    title: 'Coding Tips & Tricks',
-    description: 'Konten tips programming dan best practices untuk developer Indonesia.',
-    tags: ['Instagram', 'TikTok', 'YouTube Shorts'],
-    image: '💡',
-    color: 'from-cyan-500/20 to-blue-500/20',
-    isContent: true,
-    youtube: '#',
-  },
+  
 ];
 
 export default function ProjectsSection() {
@@ -94,11 +68,7 @@ export default function ProjectsSection() {
                 
                 <div className="space-y-3">
                   <div className="flex items-center gap-2">
-                    {project.isContent && (
-                      <span className="px-2 py-0.5 text-xs rounded-full bg-primary/10 text-primary font-medium">
-                        Content
-                      </span>
-                    )}
+          
                     <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">
                       {project.title}
                     </h3>
@@ -136,14 +106,7 @@ export default function ProjectsSection() {
                         </a>
                       </Button>
                     )}
-                    {project.youtube && (
-                      <Button size="sm" className="rounded-full" asChild>
-                        <a href={project.youtube}>
-                          <Play className="h-4 w-4 mr-1" />
-                          Watch
-                        </a>
-                      </Button>
-                    )}
+            
                   </div>
                 </div>
               </div>
