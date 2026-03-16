@@ -1,11 +1,12 @@
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, Play } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { motion } from "framer-motion";
+import { ExternalLink, Github } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const projects = [
   {
     title: "Task Manager App",
-    description:  "Aplikasi untuk mengelola tugas harian dengan fitur tambah, hapus, dan checklist task.",
+    description:
+      "Aplikasi untuk mengelola tugas harian dengan fitur tambah, hapus, dan checklist task.",
     tags: ["React", "Tailwind", "JavaScript"],
     image: "📝",
     color: "from-blue-500/20 to-cyan-500/20",
@@ -14,7 +15,8 @@ const projects = [
   },
   {
     title: "Study Planner",
-    description: "Aplikasi untuk mengatur jadwal belajar dan memonitor progress belajar.",
+    description:
+      "Aplikasi untuk mengatur jadwal belajar dan memonitor progress belajar.",
     tags: ["React", "Tailwind", "Framer Motion"],
     image: "📚",
     color: "from-purple-500/20 to-pink-500/20",
@@ -22,91 +24,119 @@ const projects = [
     demo: "https://study-planner-13h5.vercel.app",
   },
   {
-    title:  "Islamic Learning Tracker",
-    description: "Aplikasi untuk melacak hafalan Al-Qur'an dan progress belajar agama.",
+    title: "Islamic Learning Tracker",
+    description:
+      "Aplikasi untuk melacak hafalan Al-Qur'an dan progress belajar agama.",
     tags: ["React", "Tailwind"],
     image: "🕌",
     color: "from-green-500/20 to-emerald-500/20",
     github: "https://github.com/akbarsaida/islamic-learning-tracker.git",
-    demo:"https://islamic-learning-tracker.vercel.app",
+    demo: "https://islamic-learning-tracker.vercel.app",
   },
-  
 ];
 
 export default function ProjectsSection() {
   return (
-    <section id="projects" className="py-20 md:py-32 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section
+      id="projects"
+      className="relative py-32 bg-gradient-to-br from-blue-100 via-indigo-200 to-purple-300 overflow-hidden"
+    >
+      {/* Soft glow background */}
+      <div className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-blue-300/20 blur-[140px] rounded-full"></div>
+      <div className="absolute -bottom-40 -right-40 w-[400px] h-[400px] bg-purple-300/20 blur-[140px] rounded-full"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative">
+        {/* Title */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          className="text-center mb-20"
         >
-          <span className="text-primary font-medium mb-2 block">Portfolio</span>
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
-            Projects &amp; Karya
+          <span className="text-primary font-medium mb-2 block">
+            Portfolio
+          </span>
+
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            Projects & Karya
           </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
+        {/* Projects Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.15, duration: 0.6 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -10, scale: 1.03 }}
               className="group"
             >
-              <div className="h-full p-6 glass rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-2">
-                <div className={`aspect-video rounded-xl mb-4 flex items-center justify-center bg-gradient-to-br ${project.color}`}>
-                  <span className="text-6xl">{project.image}</span>
-                </div>
+              <div className="h-full p-6 bg-white/60 backdrop-blur-xl border border-white/40 rounded-2xl shadow-xl transition-all duration-300">
                 
-                <div className="space-y-3">
-                  <div className="flex items-center gap-2">
-          
-                    <h3 className="font-display text-lg font-bold group-hover:text-primary transition-colors">
-                      {project.title}
-                    </h3>
-                  </div>
-                  
-                  <p className="text-sm text-muted-foreground line-clamp-2">
+                {/* Icon */}
+                <div
+                  className={`aspect-video rounded-xl mb-5 flex items-center justify-center bg-gradient-to-br ${project.color}`}
+                >
+                  <span className="text-6xl group-hover:scale-110 transition">
+                    {project.image}
+                  </span>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="text-xl font-bold group-hover:text-primary transition">
+                    {project.title}
+                  </h3>
+
+                  <p className="text-sm text-muted-foreground">
                     {project.description}
                   </p>
-                  
+
+                  {/* Tags */}
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-2 py-1 text-xs rounded-md bg-secondary text-secondary-foreground"
+                        className="px-3 py-1 text-xs rounded-full bg-white/80 border border-gray-200"
                       >
                         {tag}
                       </span>
                     ))}
                   </div>
-                  
-                  <div className="flex gap-2 pt-2">
+
+                  {/* Buttons */}
+                  <div className="flex gap-3 pt-2">
                     {project.github && (
-                      <Button variant="outline" size="sm" className="rounded-full" asChild>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="rounded-full"
+                        asChild
+                      >
                         <a href={project.github}>
                           <Github className="h-4 w-4 mr-1" />
                           Code
                         </a>
                       </Button>
                     )}
+
                     {project.demo && (
-                      <Button size="sm" className="rounded-full" asChild>
+                      <Button
+                        size="sm"
+                        className="rounded-full bg-gradient-to-r from-cyan-500 to-purple-500"
+                        asChild
+                      >
                         <a href={project.demo}>
                           <ExternalLink className="h-4 w-4 mr-1" />
                           Demo
                         </a>
                       </Button>
                     )}
-            
                   </div>
                 </div>
               </div>

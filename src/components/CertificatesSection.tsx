@@ -31,26 +31,34 @@ const certificates = [
 
 export default function CertificatesSection() {
   return (
-    <section id="certificates" className="py-20 md:py-32">
-      <div className="container mx-auto px-4">
+    <section
+      id="certificates"
+      className="relative py-32 bg-gradient-to-br from-blue-100 via-indigo-200 to-purple-300 overflow-hidden"
+    >
+
+      {/* Glow background */}
+      <div className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-blue-300/20 blur-[140px] rounded-full"></div>
+      <div className="absolute -bottom-40 -right-40 w-[400px] h-[400px] bg-purple-300/20 blur-[140px] rounded-full"></div>
+
+      <div className="max-w-7xl mx-auto px-6 relative">
 
         {/* Title */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          viewport={{ once: true }}
+          className="text-center mb-20"
         >
           <span className="text-primary font-medium mb-2 block">
             Kredensial
           </span>
 
-          <h2 className="font-display text-3xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
             Sertifikat Saya
           </h2>
 
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full" />
+          <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full"></div>
         </motion.div>
 
         {/* Slider */}
@@ -62,27 +70,42 @@ export default function CertificatesSection() {
           navigation={true}
           modules={[EffectCoverflow, Navigation]}
           coverflowEffect={{
-            rotate: 30,
+            rotate: 25,
             stretch: 0,
-            depth: 200,
+            depth: 180,
             modifier: 1,
-            slideShadows: true,
+            slideShadows: false,
           }}
           className="max-w-6xl mx-auto"
         >
           {certificates.map((cert, index) => (
-            <SwiperSlide key={index} className="w-[300px]">
+            <SwiperSlide key={index} className="w-[320px]">
 
               <motion.div
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
+                transition={{ delay: index * 0.15 }}
+                className="group"
               >
-                <img
-                  src={cert.image}
-                  alt={cert.title}
-                  className="rounded-xl shadow-xl"
-                />
+                <div className="bg-white/60 backdrop-blur-xl border border-white/40 rounded-2xl shadow-xl overflow-hidden">
+
+                  {/* Image */}
+                  <div className="overflow-hidden">
+                    <img
+                      src={cert.image}
+                      alt={cert.title}
+                      className="rounded-t-2xl group-hover:scale-105 transition duration-500"
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <div className="p-4 text-center">
+                    <h3 className="font-semibold text-lg group-hover:text-primary transition">
+                      {cert.title}
+                    </h3>
+                  </div>
+
+                </div>
               </motion.div>
 
             </SwiperSlide>
