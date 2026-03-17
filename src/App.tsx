@@ -5,6 +5,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import CustomCursor from "./components/CustomCursor"; // ✅ TAMBAHAN
+
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 
@@ -36,6 +38,8 @@ const App = () => {
   // 🔥 MAIN APP
   return (
     <QueryClientProvider client={queryClient}>
+      <CustomCursor /> {/* ✅ TAMBAHAN */}
+
       <TooltipProvider>
         <Toaster />
         <Sonner />

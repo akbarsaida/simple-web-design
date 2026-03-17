@@ -4,6 +4,9 @@ import { useState } from "react";
 export default function AboutSection() {
   const [lang, setLang] = useState("id");
 
+  // 🔥 TAMBAHAN ACCORDION STATE
+  const [open, setOpen] = useState<number | null>(0);
+
   const content = {
     id: {
       title: "Tentang Saya",
@@ -24,8 +27,7 @@ export default function AboutSection() {
       id="about"
       className="relative py-28 bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-200"
     >
-
-      {/* 🌍 SWITCH LANGUAGE (POJOK ATAS) */}
+      {/* 🌍 SWITCH LANGUAGE */}
       <div className="absolute top-6 right-6 flex gap-2">
         <button
           onClick={() => setLang("id")}
@@ -46,7 +48,6 @@ export default function AboutSection() {
       </div>
 
       <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-
         {/* FOTO */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -55,8 +56,6 @@ export default function AboutSection() {
           className="flex justify-center"
         >
           <div className="relative group">
-
-            {/* glow */}
             <div className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-purple-500 blur-3xl opacity-30 group-hover:opacity-50 transition"></div>
 
             <img
@@ -67,7 +66,7 @@ export default function AboutSection() {
           </div>
         </motion.div>
 
-        {/* TEXT */}
+        {/* TEXT + ACCORDION */}
         <motion.div
           initial={{ opacity: 0, x: 40 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -78,20 +77,54 @@ export default function AboutSection() {
             {content[lang].title}
           </h2>
 
-          <p className="text-gray-600 leading-relaxed">
-            {content[lang].p1}
-          </p>
+          {/* 🔥 ACCORDION ITEM 1 */}
+          <div>
+            <button
+              onClick={() => setOpen(open === 0 ? null : 0)}
+              className="w-full text-left font-semibold bg-white p-4 rounded-xl shadow hover:bg-blue-50 transition"
+            >
+              📌 {lang === "id" ? "Perkenalan" : "Introduction"}
+            </button>
 
-          <p className="text-gray-600 leading-relaxed">
-            {content[lang].p2}
-          </p>
+            {open === 0 && (
+              <p className="mt-2 text-gray-600 leading-relaxed bg-white p-4 rounded-xl shadow">
+                {content[lang].p1}
+              </p>
+            )}
+          </div>
 
-          <p className="text-gray-600 leading-relaxed">
-            {content[lang].p3}
-          </p>
+          {/* 🔥 ACCORDION ITEM 2 */}
+          <div>
+            <button
+              onClick={() => setOpen(open === 1 ? null : 1)}
+              className="w-full text-left font-semibold bg-white p-4 rounded-xl shadow hover:bg-blue-50 transition"
+            >
+              💻 {lang === "id" ? "Perjalanan" : "Journey"}
+            </button>
 
+            {open === 1 && (
+              <p className="mt-2 text-gray-600 leading-relaxed bg-white p-4 rounded-xl shadow">
+                {content[lang].p2}
+              </p>
+            )}
+          </div>
+
+          {/* 🔥 ACCORDION ITEM 3 */}
+          <div>
+            <button
+              onClick={() => setOpen(open === 2 ? null : 2)}
+              className="w-full text-left font-semibold bg-white p-4 rounded-xl shadow hover:bg-blue-50 transition"
+            >
+              🚀 {lang === "id" ? "Tujuan" : "Goals"}
+            </button>
+
+            {open === 2 && (
+              <p className="mt-2 text-gray-600 leading-relaxed bg-white p-4 rounded-xl shadow">
+                {content[lang].p3}
+              </p>
+            )}
+          </div>
         </motion.div>
-
       </div>
     </section>
   );
