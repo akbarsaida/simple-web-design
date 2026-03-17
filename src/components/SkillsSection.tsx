@@ -101,9 +101,9 @@ function AchievementCard({
 export default function SkillsSection() {
   return (
     <section
-      id="skills"
-      className="py-28 bg-gradient-to-br from-blue-50 via-indigo-100 to-purple-200"
-    >
+  id="skills"
+  className="py-28 bg-gradient-to-br from-blue-100 via-indigo-200 to-purple-300"
+>
       <div className="max-w-6xl mx-auto px-6">
 
         {/* TITLE */}

@@ -56,7 +56,9 @@ export default function Navbar({ isDark, toggleTheme }: NavbarProps) {
             className="font-display text-xl md:text-2xl font-bold text-gradient cursor-pointer"
             whileHover={{ scale: 1.05 }}
           >
-            &lt;Dev /&gt;
+            <span className="text-xl font-bold text-blue-500">
+  Akbar's Portfolio
+</span>
           </motion.a>
 
           {/* Desktop Navigation */}
