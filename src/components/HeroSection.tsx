@@ -1,217 +1,200 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Linkedin, Youtube, Instagram } from "lucide-react";
+import { Github, Linkedin, Instagram, Youtube, ArrowDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Typewriter } from "react-simple-typewriter";
-import { FaReact, FaHtml5, FaCss3Alt, FaJs } from "react-icons/fa";
 import { useState } from "react";
+import { FaReact, FaJs, FaPalette, FaGlobe } from "react-icons/fa";
+
+const container = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const item = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0 },
+};
+
+const skills = [
+  { icon: <FaReact className="text-cyan-500 text-lg" /> },
+  { icon: <FaJs className="text-yellow-400 text-lg" /> },
+  { icon: <FaPalette className="text-pink-500 text-lg" /> },
+  { icon: <FaGlobe className="text-blue-500 text-lg" /> },
+];
 
 export default function HeroSection() {
+  const [lang, setLang] = useState("id");
 
-const [mouse, setMouse] = useState({ x:0, y:0 });
+  const content = {
+    id: {
+      badge: "🎉 Selamat datang di portofolio",
+      desc: "Saya adalah pelajar yang sedang belajar membuat website menggunakan HTML, CSS, dan React.",
+      btn1: "Lihat Portofolio",
+      btn2: "Kontak Saya",
+    },
+    en: {
+      badge: "🚀 Welcome to my portfolio",
+      desc: "I am a student learning to build websites using HTML, CSS, and React.",
+      btn1: "View Portfolio",
+      btn2: "Contact Me",
+    },
+  };
 
-const handleMouseMove = (e:any) => {
-setMouse({ x:e.clientX, y:e.clientY });
-};
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-blue-100 via-indigo-200 to-purple-300">
 
-const scrollToAbout = () => {
-const element = document.querySelector("#about");
-if(element) element.scrollIntoView({ behavior:"smooth" });
-};
+      {/* 🔥 background glow (tidak ganggu klik) */}
+      <motion.div
+        animate={{ x: [0, 50, 0], y: [0, 30, 0] }}
+        transition={{ duration: 10, repeat: Infinity }}
+        className="absolute w-[700px] h-[700px] bg-cyan-400/30 blur-[200px] rounded-full top-[-200px] left-[-200px] pointer-events-none"
+      />
 
-return (
+      <motion.div
+        animate={{ x: [0, -40, 0], y: [0, -20, 0] }}
+        transition={{ duration: 12, repeat: Infinity }}
+        className="absolute w-[600px] h-[600px] bg-purple-400/30 blur-[200px] rounded-full bottom-[-200px] right-[-200px] pointer-events-none"
+      />
 
-<section
-id="home"
-onMouseMove={handleMouseMove}
-className="relative min-h-screen flex items-center justify-center overflow-hidden
-bg-gradient-to-br from-blue-100 via-indigo-200 to-purple-300"
->
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="text-center px-6"
+      >
 
-{/* mouse spotlight */}
+        {/* badge */}
+        <motion.div
+          variants={item}
+          className="inline-block mb-6 px-4 py-2 rounded-full bg-white/60 backdrop-blur text-sm shadow"
+        >
+          {content[lang].badge}
+        </motion.div>
 
-<div
-className="pointer-events-none absolute -z-10 h-[500px] w-[500px] rounded-full bg-cyan-400/40 blur-[200px]"
-style={{ left: mouse.x-250, top: mouse.y-250 }}
-/>
+        {/* nama */}
+        <motion.h1
+          variants={item}
+          className="text-6xl md:text-7xl font-bold text-gray-900 mb-3"
+        >
+          Hafizh Akbar Saida
+        </motion.h1>
 
-{/* grid background */}
+        {/* typewriter */}
+        <motion.h2
+          variants={item}
+          className="text-3xl md:text-4xl text-blue-600 mb-6"
+        >
+          <Typewriter
+            words={
+              lang === "id"
+                ? ["Pelajar Web Developer", "Frontend Developer", "Belajar React"]
+                : ["Student Web Developer", "Frontend Developer", "Learning React"]
+            }
+            loop
+            cursor
+            typeSpeed={90}
+            deleteSpeed={50}
+            delaySpeed={1500}
+          />
+        </motion.h2>
 
-<div className="absolute inset-0 -z-20 opacity-30
-bg-[linear-gradient(#00000010_1px,transparent_1px),linear-gradient(90deg,#00000010_1px,transparent_1px)]
-bg-[size:40px_40px]" />
+        {/* deskripsi */}
+        <motion.p
+          variants={item}
+          className="text-gray-700 max-w-xl mx-auto mb-8"
+        >
+          {content[lang].desc}
+        </motion.p>
 
-{/* animated gradient blobs */}
+        {/* tombol */}
+        <motion.div
+          variants={item}
+          className="flex justify-center gap-4 mb-4"
+        >
+          <Button
+            onClick={() =>
+              document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" })
+            }
+            className="bg-blue-600 text-white px-6 rounded-full hover:scale-110 transition duration-300"
+          >
+            {content[lang].btn1}
+          </Button>
 
-<motion.div
-animate={{ x:[0,120,0], y:[0,80,0] }}
-transition={{ duration:24, repeat:Infinity }}
-className="absolute -z-10 w-[650px] h-[650px] bg-blue-400/40 blur-[200px] rounded-full top-[-250px] left-[-250px]"
-/>
+          <Button
+            onClick={() =>
+              document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })
+            }
+            variant="outline"
+            className="rounded-full px-6 hover:scale-110 transition duration-300"
+          >
+            {content[lang].btn2}
+          </Button>
+        </motion.div>
 
-<motion.div
-animate={{ x:[0,-140,0], y:[0,-100,0] }}
-transition={{ duration:28, repeat:Infinity }}
-className="absolute -z-10 w-[650px] h-[650px] bg-purple-500/40 blur-[200px] rounded-full bottom-[-250px] right-[-250px]"
-/>
+        {/* ✅ EN ID DIPINDAH KE BAWAH (AMAN) */}
+        <motion.div variants={item} className="flex justify-center gap-2 mb-6">
+          <button
+            onClick={() => setLang("id")}
+            className={`px-3 py-1 rounded-full text-sm ${
+              lang === "id" ? "bg-blue-600 text-white" : "bg-white"
+            }`}
+          >
+            ID
+          </button>
+          <button
+            onClick={() => setLang("en")}
+            className={`px-3 py-1 rounded-full text-sm ${
+              lang === "en" ? "bg-blue-600 text-white" : "bg-white"
+            }`}
+          >
+            EN
+          </button>
+        </motion.div>
 
-<div className="container mx-auto px-6">
+        {/* icon logo */}
+        <motion.div variants={item} className="flex justify-center gap-3 mb-6">
+          {skills.map((itemIcon, i) => (
+            <motion.div
+              key={i}
+              animate={{ y: [0, -10, 0] }}
+              transition={{
+                duration: 2 + i,
+                repeat: Infinity,
+              }}
+              className="w-10 h-10 rounded-full bg-white shadow flex items-center justify-center hover:scale-110 transition"
+            >
+              {itemIcon.icon}
+            </motion.div>
+          ))}
+        </motion.div>
 
-<div className="max-w-4xl mx-auto text-center">
+        {/* social */}
+        <motion.div
+          variants={item}
+          className="flex justify-center gap-6 text-gray-700 mb-10"
+        >
+          <Github className="cursor-pointer hover:scale-125 transition" />
+          <Linkedin className="cursor-pointer hover:scale-125 transition" />
+          <Youtube className="cursor-pointer hover:scale-125 transition" />
+          <Instagram className="cursor-pointer hover:scale-125 transition" />
+        </motion.div>
+      </motion.div>
 
-{/* badge */}
-
-<motion.span
-initial={{ opacity:0,scale:0.9 }}
-animate={{ opacity:1,scale:1 }}
-transition={{ duration:0.6 }}
-className="inline-block px-5 py-2 rounded-full backdrop-blur bg-white/40 text-gray-800 text-sm mb-6 shadow"
-
->
-
-👋 Selamat datang di portfolio saya
-</motion.span>
-
-{/* name */}
-
-<motion.h1
-initial={{ opacity:0,y:30 }}
-animate={{ opacity:1,y:0 }}
-transition={{ delay:0.2 }}
-className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4"
-
->
-
-Hafizh Akbar Saida
-</motion.h1>
-
-{/* typing title */}
-
-<motion.h2
-initial={{ opacity:0,y:30 }}
-animate={{ opacity:1,y:0 }}
-transition={{ delay:0.4 }}
-className="text-3xl md:text-5xl font-bold bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 bg-clip-text text-transparent mb-6"
-
->
-
-<Typewriter
-words={[
-"Student Web Developer",
-"Frontend Developer",
-"React Learner",
-"Future Software Engineer"
-]}
-loop
-cursor
-cursorStyle="|"
-typeSpeed={70}
-deleteSpeed={40}
-delaySpeed={2000}
-/>
-</motion.h2>
-
-{/* description */}
-
-<motion.p
-initial={{ opacity:0,y:30 }}
-animate={{ opacity:1,y:0 }}
-transition={{ delay:0.6 }}
-className="text-lg text-gray-700 max-w-2xl mx-auto mb-10"
-
->
-
-Saya adalah siswa MAN yang sedang belajar membuat website
-menggunakan HTML, CSS, dan React.
-</motion.p>
-
-{/* buttons */}
-
-<motion.div
-initial={{ opacity:0,y:30 }}
-animate={{ opacity:1,y:0 }}
-transition={{ delay:0.8 }}
-className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
-
->
-
-<Button
-size="lg"
-className="rounded-full px-8 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg hover:scale-105 transition"
-
->
-
-Lihat Portofolio </Button>
-
-<Button
-variant="outline"
-size="lg"
-className="rounded-full px-8 backdrop-blur border-gray-300 hover:bg-white/60"
-
->
-
-Hubungi Saya </Button>
-
-</motion.div>
-
-{/* floating tech icons */}
-
-<div className="flex justify-center gap-8 text-4xl text-gray-800 mb-12">
-
-<motion.div animate={{ y:[0,-10,0] }} transition={{ duration:3, repeat:Infinity }}> <FaReact/>
-</motion.div>
-
-<motion.div animate={{ y:[0,-10,0] }} transition={{ duration:3, repeat:Infinity, delay:0.5 }}> <FaJs/>
-</motion.div>
-
-<motion.div animate={{ y:[0,-10,0] }} transition={{ duration:3, repeat:Infinity, delay:1 }}> <FaHtml5/>
-</motion.div>
-
-<motion.div animate={{ y:[0,-10,0] }} transition={{ duration:3, repeat:Infinity, delay:1.5 }}> <FaCss3Alt/>
-</motion.div>
-
-</div>
-
-{/* social icons */}
-
-<div className="flex justify-center gap-6">
-
-{[
-{ icon: Github },
-{ icon: Linkedin },
-{ icon: Youtube },
-{ icon: Instagram }
-].map((social,i)=>(
-<motion.a
-key={i}
-whileHover={{ scale:1.15 }}
-className="p-3 rounded-full bg-white/50 backdrop-blur shadow hover:bg-white transition"
-
->
-
-<social.icon size={20}/>
-</motion.a>
-))}
-
-</div>
-
-</div>
-
-</div>
-
-{/* scroll indicator */}
-
-<motion.button
-onClick={scrollToAbout}
-className="absolute bottom-10 left-1/2 -translate-x-1/2 p-3 rounded-full bg-white/60 backdrop-blur shadow"
-animate={{ y:[0,12,0] }}
-transition={{ repeat:Infinity, duration:1.5 }}
-
->
-
-<ArrowDown/>
-</motion.button>
-
-</section>
-
-);
+      {/* ⬇️ FIX: KE ABOUT */}
+      <motion.div
+        onClick={() =>
+          document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })
+        }
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 cursor-pointer"
+        animate={{ y: [0, 12, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+      >
+        <ArrowDown />
+      </motion.div>
+    </section>
+  );
 }

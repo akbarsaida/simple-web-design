@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
+import useEmblaCarousel from "embla-carousel-react";
 
 const projects = [
   {
@@ -36,12 +38,29 @@ const projects = [
 ];
 
 export default function ProjectsSection() {
+  const [open, setOpen] = useState<number | null>(null);
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+  });
+
+  // AUTO SLIDE
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const interval = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [emblaApi]);
+
   return (
     <section
       id="projects"
       className="relative py-32 bg-gradient-to-br from-blue-100 via-indigo-200 to-purple-300 overflow-hidden"
     >
-      {/* Soft glow background */}
+      {/* Glow */}
       <div className="absolute -top-40 -left-40 w-[400px] h-[400px] bg-blue-300/20 blur-[140px] rounded-full"></div>
       <div className="absolute -bottom-40 -right-40 w-[400px] h-[400px] bg-purple-300/20 blur-[140px] rounded-full"></div>
 
@@ -50,98 +69,99 @@ export default function ProjectsSection() {
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
           className="text-center mb-20"
         >
-          <span className="text-primary font-medium mb-2 block">
-            Portfolio
-          </span>
-
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+          <h2 className="text-4xl font-bold mb-4">
             Projects & Karya
           </h2>
-
-          <div className="w-24 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 mx-auto rounded-full"></div>
         </motion.div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, index) => (
-            <motion.div
-              key={project.title}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.15, duration: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -10, scale: 1.03 }}
-              className="group"
-            >
-              <div className="h-full p-6 bg-white/60 backdrop-blur-xl border border-white/40 rounded-2xl shadow-xl transition-all duration-300">
-                
-                {/* Icon */}
-                <div
-                  className={`aspect-video rounded-xl mb-5 flex items-center justify-center bg-gradient-to-br ${project.color}`}
+        {/* CAROUSEL */}
+        <div className="relative">
+          {/* BUTTON KIRI */}
+          <button
+            onClick={() => emblaApi?.scrollPrev()}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/70 backdrop-blur p-2 rounded-full shadow"
+          >
+            <ChevronLeft />
+          </button>
+
+          {/* BUTTON KANAN */}
+          <button
+            onClick={() => emblaApi?.scrollNext()}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/70 backdrop-blur p-2 rounded-full shadow"
+          >
+            <ChevronRight />
+          </button>
+
+          {/* SLIDER */}
+          <div ref={emblaRef} className="overflow-hidden">
+            <div className="flex gap-6">
+              {projects.map((project, index) => (
+                <motion.div
+                  key={project.title}
+                  whileHover={{ scale: 1.05 }}
+                  className="min-w-[85%] md:min-w-[45%] lg:min-w-[30%]"
                 >
-                  <span className="text-6xl group-hover:scale-110 transition">
-                    {project.image}
-                  </span>
-                </div>
+                  <div className="p-6 bg-white/60 backdrop-blur-xl rounded-2xl shadow-xl hover:shadow-2xl transition">
+                    
+                    {/* ICON */}
+                    <div
+                      className={`aspect-video flex items-center justify-center rounded-xl mb-5 bg-gradient-to-br ${project.color}`}
+                    >
+                      <span className="text-6xl">{project.image}</span>
+                    </div>
 
-                <div className="space-y-4">
-                  <h3 className="text-xl font-bold group-hover:text-primary transition">
-                    {project.title}
-                  </h3>
+                    {/* TITLE */}
+                    <h3
+                      onClick={() =>
+                        setOpen(open === index ? null : index)
+                      }
+                      className="text-xl font-bold cursor-pointer hover:text-blue-500"
+                    >
+                      {project.title}
+                    </h3>
 
-                  <p className="text-sm text-muted-foreground">
-                    {project.description}
-                  </p>
+                    {/* ACCORDION */}
+                    {open === index && (
+                      <p className="text-sm mt-2 text-gray-600">
+                        {project.description}
+                      </p>
+                    )}
 
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 text-xs rounded-full bg-white/80 border border-gray-200"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                    {/* TAG */}
+                    <div className="flex gap-2 flex-wrap mt-3">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="px-3 py-1 text-xs bg-white rounded-full border"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
 
-                  {/* Buttons */}
-                  <div className="flex gap-3 pt-2">
-                    {project.github && (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="rounded-full"
-                        asChild
-                      >
+                    {/* BUTTON */}
+                    <div className="flex gap-3 mt-4">
+                      <Button variant="outline" size="sm" asChild>
                         <a href={project.github}>
                           <Github className="h-4 w-4 mr-1" />
                           Code
                         </a>
                       </Button>
-                    )}
 
-                    {project.demo && (
-                      <Button
-                        size="sm"
-                        className="rounded-full bg-gradient-to-r from-cyan-500 to-purple-500"
-                        asChild
-                      >
+                      <Button size="sm" asChild>
                         <a href={project.demo}>
                           <ExternalLink className="h-4 w-4 mr-1" />
                           Demo
                         </a>
                       </Button>
-                    )}
+                    </div>
                   </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
