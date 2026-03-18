@@ -10,15 +10,15 @@ export default function AboutSection() {
   const content = {
     id: {
       title: "Tentang Saya",
-      p1: "Saya adalah siswa MAN Model Banda Aceh yang memiliki minat besar dalam dunia teknologi, khususnya Web Development. Saat ini saya sedang belajar membuat website modern menggunakan React dan TailwindCSS untuk terus meningkatkan kemampuan saya dalam dunia digital.",
-      p2: "Website ini bukan sekadar tugas, tetapi juga menjadi bukti bahwa saya mampu belajar dan berkembang di dunia teknologi. Saya percaya setiap baris kode yang saya tulis adalah bagian dari perjalanan saya untuk terus belajar, berkreasi, dan meningkatkan kemampuan di dunia digital.",
-      p3: "Melalui website ini, saya ingin menunjukkan bahwa dengan usaha, rasa ingin tahu, dan semangat belajar, seseorang dapat menciptakan sesuatu yang bermanfaat dan menarik.",
+      p1: "Saya Hafizh Akbar Saida, lahir di Banda Aceh pada tanggal 6 Oktober 2010. Saya adalah siswa kelas X-4 MAN Model Banda Aceh yang memiliki minat besar dalam dunia teknologi, khususnya Web Development. Saat ini saya sedang belajar membuat website modern menggunakan React dan TailwindCSS untuk terus meningkatkan kemampuan saya dalam dunia digital. Dengan semangat belajar yang tinggi, saya terus berusaha mengembangkan skill dan mengeksplorasi berbagai teknologi baru.",
+      p2: "Website ini bukan sekadar tugas, tetapi juga bukti bahwa saya mampu belajar dan berkembang di dunia teknologi. Saya percaya setiap baris kode yang saya tulis adalah bagian dari perjalanan saya untuk terus belajar, berkreasi, dan meningkatkan kemampuan di dunia digital. Dalam proses ini, saya juga belajar menghadapi tantangan dan memecahkan masalah secara mandiri.",
+      p3: "Melalui website ini, saya ingin menunjukkan bahwa dengan usaha, rasa ingin tahu, dan semangat belajar, seseorang dapat menciptakan sesuatu yang bermanfaat dan menarik. Ke depannya, saya ingin terus berkembang menjadi developer yang profesional dan mampu membuat inovasi yang berdampak positif bagi banyak orang.",
     },
     en: {
       title: "About Me",
-      p1: "I am a student of MAN Model Banda Aceh who has a strong interest in technology, especially Web Development. Currently, I am learning to build modern websites using React and TailwindCSS to continuously improve my skills in the digital world.",
-      p2: "This website is not just an assignment, but also proof that I am capable of learning and growing in the field of technology. I believe every line of code I write is part of my journey to keep learning, creating, and improving my skills in the digital world.",
-      p3: "Through this website, I want to show that with effort, curiosity, and a strong willingness to learn, someone can create something useful and interesting.",
+      p1: "I am Hafizh Akbar Saida, born in Banda Aceh on October 6, 2010. I am a student of class X-4 at MAN Model Banda Aceh who has a strong interest in technology, especially Web Development. Currently, I am learning to build modern websites using React and TailwindCSS to continuously improve my skills in the digital world. With a strong passion for learning, I keep developing my skills and exploring new technologies.",
+      p2: "This website is not just an assignment, but also proof that I am capable of learning and growing in the field of technology. I believe every line of code I write is part of my journey to keep learning, creating, and improving my skills in the digital world. Throughout this process, I also learn how to face challenges and solve problems independently.",
+      p3: "Through this website, I want to show that with effort, curiosity, and a strong willingness to learn, someone can create something useful and interesting. In the future, I aim to become a professional developer and create innovations that bring positive impact to many people.",
     },
   };
 
